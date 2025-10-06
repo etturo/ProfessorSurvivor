@@ -16,6 +16,10 @@ add_executable(main src/main.cpp
         src/Player.cpp
         includes/Player.h
         src/Entity.cpp
-        includes/Entity.h)
+        includes/Entity.h
+        src/Enemy.cpp
+        includes/Enemy.h
+        src/Application.cpp
+        includes/Application.h)
 target_compile_features(main PRIVATE cxx_std_17)
 target_link_libraries(main PRIVATE SFML::Graphics)

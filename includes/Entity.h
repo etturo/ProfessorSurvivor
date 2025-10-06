@@ -7,21 +7,25 @@
 #include "SFML/Graphics/Drawable.hpp"
 #include "SFML/Graphics/Sprite.hpp"
 #include "SFML/Graphics/Texture.hpp"
+#include "SFML/System/Time.hpp"
 
 class Entity : public sf::Drawable, public sf::Transformable {
 private:
 	sf::Sprite *graphics;
 	sf::Texture *texture;
+protected:
+	int		hp;
+	int		max_hp = 100;
+	float	move_speed = 250;
 public:
 	Entity(std::string graphics_path);
+
 	~Entity() {
 		delete graphics;
 		delete texture;
 	}
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
-
+	virtual void Update() = 0;
 };
-
-
 
 #endif //ENTITY_H

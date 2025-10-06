@@ -6,12 +6,9 @@
 
 #include "SFML/System/Time.hpp"
 #include "SFML/Window/Keyboard.hpp"
+#include "../includes/Application.h"
 
-void Player::Move(sf::Vector2f delta) {
-	this->move(delta);
-}
-
-void Player::Update(sf::Time delta_time) {
+void Player::Update() {
 	sf::Vector2f alpha{0,0};
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
 		alpha.x -= 1.f;
@@ -22,6 +19,6 @@ void Player::Update(sf::Time delta_time) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
 		alpha.y += 1.f;
 	if (alpha.x != 0 || alpha.y != 0)
-		move(alpha.normalized()*delta_time.asSeconds()*move_speed);
+		move(alpha.normalized()*Application::GetInstance()->GetDeltaT()->asSeconds()*move_speed);
 
 }

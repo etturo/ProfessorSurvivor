@@ -11,16 +11,10 @@
 
 
 class Player : public Entity {
-private:
-	int		hp;
-	int		max_hp = 100;
-	float	move_speed = 250;
 public:
 	Player(std::string graphics_path) : Entity(graphics_path) {
-		hp = max_hp;
 	}
-	void Move(sf::Vector2f delta);
-	void Update(sf::Time delta_time);
+	void Update() override;
 };
 
 
