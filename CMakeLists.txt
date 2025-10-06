@@ -13,13 +13,17 @@ FetchContent_Declare(SFML
 FetchContent_MakeAvailable(SFML)
 
 add_executable(main src/main.cpp
-        src/Player.cpp
-        includes/Player.h
-        src/Entity.cpp
-        includes/Entity.h
-        src/Enemy.cpp
-        includes/Enemy.h
-        src/Application.cpp
-        includes/Application.h)
+        src/Entities/Player.cpp
+        includes/Entities/Player.h
+        src/Core/Entity.cpp
+        includes/Core/Entity.h
+        src/Entities/Enemy.cpp
+        includes/Entities/Enemy.h
+        src/Core/Application.cpp
+        includes/Core/Application.h
+        src/GUI/FPSCounter.cpp
+        includes/GUI/FPSCounter.h
+        src/GUI/GameTimer.cpp
+        includes/GUI/GameTimer.h)
 target_compile_features(main PRIVATE cxx_std_17)
 target_link_libraries(main PRIVATE SFML::Graphics)

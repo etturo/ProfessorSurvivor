@@ -2,29 +2,33 @@
 // Created by Ettore Turini on 06/10/25.
 //
 
-#include "../includes/Application.h"
-
-#include <iostream>
-
+#include "../../includes/Core/Application.h"
+#include "../../includes/GUI/FPSCounter.h"
+#include "../../includes/GUI/GameTimer.h"
 #include "SFML/Graphics/Font.hpp"
 #include "SFML/Graphics/Text.hpp"
-
-void fps_draw(sf::RenderTarget& target, sf::Time delta_time);
 
 void Application::Start() {
 	player = new Player("../../assets/stef.png");
 	enemy = new Enemy("../../assets/ciccio.jpg");
+	FPS_counter = new FPSCounter();
+	Timer = new GameTimer();
+	enemy->SetSpeed(100);
+	player->SetSpeed(250);
 }
 
 void Application::Update() {
 	player->Update();
 	enemy->Update();
+	FPS_counter->ComputeFPS();
+	Timer->Update();
 }
 
 void Application::Render(sf::RenderTarget &target) {
 	target.draw(*enemy);
 	target.draw(*player);
-	fps_draw(target, delta_time);
+	target.draw(*FPS_counter);
+	target.draw(*Timer);
 }
 
 void Application::EvaluateEvent(std::optional<sf::Event> event) {
@@ -57,30 +61,6 @@ Application::Application(unsigned int width, unsigned int height, std::string wi
 		Render(*window);
 		window->display();
 	}
-}
-
-void fps_draw(sf::RenderTarget& target, sf::Time delta_time) {
-	sf::Font font;
-	if (!font.openFromFile("../../fonts/fps_font.otf"))
-		std::cout << "Error loading font.";
-
-	static float timeSinceLastUpdate = 0.f;
-	static int frame_count = 0;
-
-	timeSinceLastUpdate += delta_time.asSeconds();
-	++frame_count;
-
-	static sf::Text fpsText(font, "FPS: 0", 24);
-	fpsText.setFillColor(sf::Color::White);
-	fpsText.setPosition({10,10});
-
-	if (timeSinceLastUpdate >= 1.f){
-		fpsText.setString("FPS: " + std::to_string(frame_count));
-		timeSinceLastUpdate = 0.f;
-		frame_count = 0;
-	}
-
-	target.draw(fpsText);
 }
 
 Application* Application::instance = nullptr;

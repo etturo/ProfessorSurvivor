@@ -15,14 +15,20 @@ private:
 	sf::Texture *texture;
 protected:
 	int		hp;
-	int		max_hp = 100;
-	float	move_speed = 250;
+	int		max_hp;
+	int	move_speed;
 public:
 	Entity(std::string graphics_path);
 
 	~Entity() {
 		delete graphics;
 		delete texture;
+	}
+	void SetSpeed(int speed) {
+		move_speed = speed;
+	}
+	void SetHP(int hp) {
+		this->hp = hp;
 	}
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 	virtual void Update() = 0;

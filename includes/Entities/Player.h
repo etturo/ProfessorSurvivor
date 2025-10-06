@@ -6,7 +6,7 @@
 #define PLAYER_H
 #include <vector>
 
-#include "Entity.h"
+#include "../Core/Entity.h"
 #include "SFML/System/Time.hpp"
 
 

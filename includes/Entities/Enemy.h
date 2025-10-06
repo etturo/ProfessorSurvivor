@@ -4,7 +4,7 @@
 
 #ifndef CMAKESFMLPROJECT_ENEMY_H
 #define CMAKESFMLPROJECT_ENEMY_H
-#include "Entity.h"
+#include "../Core/Entity.h"
 
 
 class Enemy : public Entity {

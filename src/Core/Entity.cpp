@@ -2,7 +2,7 @@
 // Created by Ettore Turini on 01/10/25.
 //
 
-#include "../includes/Entity.h"
+#include "../../includes/Core/Entity.h"
 #include <string>
 #include "SFML/Graphics/RenderTarget.hpp"
 

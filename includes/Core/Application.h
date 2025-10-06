@@ -7,14 +7,18 @@
 
 #include <string>
 
-#include "Enemy.h"
-#include "Player.h"
+#include "../Entities/Enemy.h"
+#include "../Entities/Player.h"
+#include "../GUI/FPSCounter.h"
+#include "../GUI/GameTimer.h"
 #include "SFML/Graphics/RenderWindow.hpp"
 
 class Application {
 private:
 	Player *player;
 	Enemy *enemy;
+	FPSCounter *FPS_counter;
+	GameTimer *Timer;
 	sf::RenderWindow *window;
 	sf::Time delta_time;
 	static Application *instance;
@@ -33,6 +37,9 @@ public:
 	}
 	sf::Time *GetDeltaT() {
 		return &delta_time;
+	}
+	sf::Vector2u GetWindowSize() {
+		return window->getSize();
 	}
 
 	static Application* GetInstance() {
