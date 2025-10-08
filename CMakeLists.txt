@@ -24,6 +24,8 @@ add_executable(main src/main.cpp
         src/GUI/FPSCounter.cpp
         includes/GUI/FPSCounter.h
         src/GUI/GameTimer.cpp
-        includes/GUI/GameTimer.h)
+        includes/GUI/GameTimer.h
+        src/GUI/HPBar.cpp
+        includes/GUI/HPBar.h)
 target_compile_features(main PRIVATE cxx_std_17)
 target_link_libraries(main PRIVATE SFML::Graphics)

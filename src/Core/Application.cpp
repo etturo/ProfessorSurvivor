@@ -10,23 +10,25 @@
 
 void Application::Start() {
 	player = new Player("../../assets/stef.png");
-	enemy = new Enemy("../../assets/ciccio.jpg");
+	AddGameObj(player);
+	AddGameObj(new Enemy("../../assets/ciccio.jpg"));
 	FPS_counter = new FPSCounter();
 	Timer = new GameTimer();
-	enemy->SetSpeed(100);
 	player->SetSpeed(250);
 }
 
 void Application::Update() {
-	player->Update();
-	enemy->Update();
+	for (Entity *obj: game_objects) {
+		obj->Update();
+	}
 	FPS_counter->ComputeFPS();
 	Timer->Update();
 }
 
 void Application::Render(sf::RenderTarget &target) {
-	target.draw(*enemy);
-	target.draw(*player);
+	for (Entity *entity: game_objects) {
+		target.draw(*entity);
+	}
 	target.draw(*FPS_counter);
 	target.draw(*Timer);
 }

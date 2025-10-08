@@ -9,6 +9,7 @@
 Entity::Entity(std::string graphics_path) {
 	texture = new sf::Texture(graphics_path);
 	graphics = new sf::Sprite(*texture);
+	graphics->setOrigin(graphics->getLocalBounds().getCenter());
 	hp = max_hp;
 }
 

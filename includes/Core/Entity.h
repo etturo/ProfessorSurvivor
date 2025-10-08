@@ -11,9 +11,9 @@
 
 class Entity : public sf::Drawable, public sf::Transformable {
 private:
-	sf::Sprite *graphics;
 	sf::Texture *texture;
 protected:
+	sf::Sprite *graphics;
 	int		hp;
 	int		max_hp;
 	int	move_speed;
@@ -28,7 +28,10 @@ public:
 		move_speed = speed;
 	}
 	void SetHP(int hp) {
-		this->hp = hp;
+		if (hp < 0)
+			this->hp = 0;
+		else
+			this->hp = hp;
 	}
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 	virtual void Update() = 0;

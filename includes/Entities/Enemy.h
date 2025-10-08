@@ -10,6 +10,7 @@
 class Enemy : public Entity {
 public:
 	Enemy(std::string graphics_path) : Entity(graphics_path) {
+		move_speed = 100;
 	}
 	void Update() override;
 };

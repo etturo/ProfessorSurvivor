@@ -8,8 +8,14 @@
 #include "SFML/Window/Keyboard.hpp"
 #include "../../includes/Core/Application.h"
 
+void Player::draw(sf::RenderTarget &target, sf::RenderStates states) const {
+	Entity::draw(target, states);
+	target.draw(hp_bar);
+}
+
 void Player::Update() {
 	sf::Vector2f alpha{0,0};
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
 		alpha.x -= 1.f;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
@@ -20,5 +26,9 @@ void Player::Update() {
 		alpha.y += 1.f;
 	if (alpha.x != 0 || alpha.y != 0)
 		move(alpha.normalized()*Application::GetInstance()->GetDeltaT()->asSeconds()*static_cast<float>(move_speed));
+
+	hp_bar.setPosition(this->getPosition() + sf::Vector2f{0, graphics->getLocalBounds().size.y/2.0f + 5});
+	hp_bar.Update();
+
 
 }
