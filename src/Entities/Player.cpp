@@ -9,11 +9,16 @@
 #include "../../includes/Core/Application.h"
 
 void Player::draw(sf::RenderTarget &target, sf::RenderStates states) const {
+	if (is_red)
+		states.shader = &red_shader;
 	Entity::draw(target, states);
 	target.draw(hp_bar);
 }
 
 void Player::Update() {
+	if (Application::GetInstance()->is_game_over == true)
+		return ;
+
 	sf::Vector2f alpha{0,0};
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
@@ -29,6 +34,16 @@ void Player::Update() {
 
 	hp_bar.setPosition(this->getPosition() + sf::Vector2f{0, graphics->getLocalBounds().size.y/2.0f + 5});
 	hp_bar.Update();
+	is_red = false;
 
+	for (Enemy *enemy : Application::GetInstance()->GetAllEnemies()) {
+		if ((getPosition() - enemy->getPosition()).length() < graphics->getLocalBounds().size.x/2.0f) {
+			SetHP(hp-1);
+			is_red = true;
+		}
+	}
 
+	if (!hp) {
+		Application::GetInstance()->GameOver();
+	}
 }

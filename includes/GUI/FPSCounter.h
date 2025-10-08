@@ -19,7 +19,6 @@ public:
 	void ComputeFPS();
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 
-
 	void fps_draw(sf::RenderTarget& target, sf::Time delta_time);
 };
 

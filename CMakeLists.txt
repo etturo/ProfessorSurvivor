@@ -26,6 +26,10 @@ add_executable(main src/main.cpp
         src/GUI/GameTimer.cpp
         includes/GUI/GameTimer.h
         src/GUI/HPBar.cpp
-        includes/GUI/HPBar.h)
+        includes/GUI/HPBar.h
+        src/GUI/DeathScreen.cpp
+        includes/GUI/DeathScreen.h
+        src/Core/EnemySpawner.cpp
+        includes/Core/EnemySpawner.h)
 target_compile_features(main PRIVATE cxx_std_17)
 target_link_libraries(main PRIVATE SFML::Graphics)

@@ -19,6 +19,8 @@ FPSCounter::FPSCounter() : FPS_text(font,"FPS: 0", 24) {
 }
 
 void FPSCounter::ComputeFPS() {
+	if (Application::GetInstance()->is_game_over == true)
+		return ;
 	static unsigned int frame_count = 0;
 	static float timeSinceLastUpdate = 0.f;
 
@@ -33,5 +35,6 @@ void FPSCounter::ComputeFPS() {
 }
 
 void FPSCounter::draw(sf::RenderTarget &target, sf::RenderStates states) const {
+
 	target.draw(FPS_text);
 }
